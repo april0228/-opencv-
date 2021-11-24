@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>readMe.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="%E5%9F%BA%E4%BA%8E%E8%87%AA%E5%AE%9E%E7%8E%B0opencv%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0%E7%9A%84%E9%9D%99%E6%80%81%E8%BD%A6%E9%81%93%E7%BA%BF%E6%A3%80%E6%B5%8B%E9%A1%B9%E7%9B%AE"><strong>基于自实现opencv图像处理函数的静态车道线检测项目</strong></h1>
+<!-- TOC -->
+<ul>
+<li><a href="#%E5%9F%BA%E4%BA%8E%E8%87%AA%E5%AE%9E%E7%8E%B0opencv%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86%E5%87%BD%E6%95%B0%E7%9A%84%E9%9D%99%E6%80%81%E8%BD%A6%E9%81%93%E7%BA%BF%E6%A3%80%E6%B5%8B%E9%A1%B9%E7%9B%AE"><strong>基于自实现opencv图像处理函数的静态车道线检测项目</strong></a>
+<ul>
+<li><a href="#1%E9%A1%B9%E7%9B%AE%E8%83%8C%E6%99%AF"><strong>1.项目背景</strong></a></li>
+<li><a href="#2%E5%AE%9E%E7%8E%B0"><strong>2.实现</strong></a>
+<ul>
+<li><a href="#21-%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF-%E5%8E%BB%E5%99%AA%E8%BE%B9%E7%BC%98%E6%8F%90%E5%8F%96%E8%BD%A6%E9%81%93%E6%A3%80%E6%B5%8B"><strong>2.1 基本思路： 去噪，边缘提取，车道检测</strong></a></li>
+<li><a href="#22-%E5%AE%9E%E7%8E%B0%E8%BF%87%E7%A8%8B"><strong>2.2 实现过程</strong></a></li>
+</ul>
+</li>
+<li><a href="#3-%E7%BB%93%E6%9E%9C%E5%88%86%E6%9E%90"><strong>3. 结果分析</strong></a></li>
+<li><a href="#4-%E5%90%8E%E7%BB%AD"><strong>4. 后续</strong></a></li>
+</ul>
+</li>
+</ul>
+<!-- /TOC -->
+<h2 id="1%E9%A1%B9%E7%9B%AE%E8%83%8C%E6%99%AF"><strong>1.项目背景</strong></h2>
+<p><strong>起源于选修邸慧军老师的《数字图像处理》这门课程的最终课程设计项目 ：实现车道线检测</strong></p>
+<ol>
+<li>不能用神经网络（老师的原话是直接喂给神经网络就没有意思了），只能用数字图像处理方法</li>
+<li>除了读取与写入之外不能使用其他现成库函数，比如大名鼎鼎的opencv</li>
+<li>其实本来计划是MATLAB（教学也是MATLAB），后来我校突然就进美国名单里MATLAB用不了头了就改c++了</li>
+</ol>
+<p><strong>数据集</strong><br>
+数据集由720*1280的jpg格式图片组成，实际上就是开车在公路沿途拍下来的，因为我发现数据集的图片之间很有连贯性。其中一张如图所示：
+<img src="./source/20.jpg" alt="avatar"><br>
+<strong>环境</strong><br>
+我是win10 + vs2019。记得配置opencv，用来读取图片。</p>
+<h2 id="2%E5%AE%9E%E7%8E%B0"><strong>2.实现</strong></h2>
+<h3 id="21-%E5%9F%BA%E6%9C%AC%E6%80%9D%E8%B7%AF-%E5%8E%BB%E5%99%AA%E8%BE%B9%E7%BC%98%E6%8F%90%E5%8F%96%E8%BD%A6%E9%81%93%E6%A3%80%E6%B5%8B"><strong>2.1 基本思路： 去噪，边缘提取，车道检测</strong></h3>
+<p>但在刚刚开始的时候无从下手，因为选择太多了。<br>
+比如说去噪音可以高斯滤波，均值滤波，中值滤波。<br>
+边缘提取你又可以拉普拉斯锐化，sobel算子，Robert算子，scharr算子，candy检测。<br>
+于是我干脆把这些实现一个遍，再慢慢选择好了。<br>
+于是自实现了以下算法：</p>
+<ol>
+<li>彩色图像转灰度</li>
+<li>图像翻转，获得负片</li>
+<li>线性灰度转换</li>
+<li>对数灰度转换</li>
+<li>指数灰度转换</li>
+<li>方框滤波</li>
+<li>均值滤波</li>
+<li>高斯滤波</li>
+<li>中值滤波</li>
+<li>最值滤波</li>
+<li>拉普拉斯锐化</li>
+<li>漫水填充</li>
+<li>阈值分割</li>
+<li>自适应阈值分割</li>
+<li>candy边缘检测</li>
+<li>scharr边缘检测</li>
+<li>sobel边缘检测</li>
+<li>Robert边缘检测</li>
+<li>霍夫直线检测</li>
+<li>直方图均衡化<br>
+<strong>所有算法源码均定义位于minicv.h下，最下面有接口参数说明；所有实现位于minicv.cpp下，关键步骤有注释</strong></li>
+</ol>
+<h3 id="22-%E5%AE%9E%E7%8E%B0%E8%BF%87%E7%A8%8B"><strong>2.2 实现过程</strong></h3>
+<ol start="0">
+<li>
+<p><strong>以此图片为实例</strong><br>
+<img src="./source/20.jpg" alt="avatar"></p>
+</li>
+<li>
+<p><strong>转灰度图</strong>，公式是GRAY = B * 0.114 + G * 0.587 + R * 0.299。目的是为了减少运算量，简化操作。</p>
+</li>
+</ol>
+<pre class="hljs"><code><div> _getGray(img) <span class="hljs-comment">//有些函数会与opencv重名，所以我自实现的都带下划线。其实也可以自定义namespace</span>
+</div></code></pre>
+<p>效果：
+<img src="./source/21.png" alt="avatar"></p>
+<ol start="2">
+<li><strong>均值滤波去噪音</strong>。<br>
+实际上我认为施加平滑滤波的主要原因不是为了去除噪音，因为对于斑点噪音，实际上后面的霍夫变换基本上会忽略。<br>
+我认为施加滤波之后图像边模糊了（废话）——图片的边缘变宽了，一些细线变粗相当有利于后面的边缘检测。<br>
+另外，试了高斯滤波与均值滤波，效果相当，就选简单的均值滤波吧<br>
+施加均值滤波后效果如下</li>
+</ol>
+<pre class="hljs"><code><div>_blur(img, <span class="hljs-number">3</span>, <span class="hljs-number">3</span>); <span class="hljs-comment">//大小是 3*3</span>
+</div></code></pre>
+<p><img src="./source/22.png" alt="avatar"></p>
+<ol start="3">
+<li><strong>幂指变换</strong>。 本来是没有这一步的，但是到最后发现没有这一步对比较暗的图片实现效果比较差，因为后面有一步数阈值分割。<br>
+<strong>我把这一步看作这个算法成功的关键之一（另一个是霍夫变换）</strong>。于是增亮有两个选择，直方图均衡化或者幂指变换，事实证明后者效果更加好，<br>
+使图像整体效果更加符合人眼，也非常有利于阈值选择的普适性</li>
+</ol>
+<pre class="hljs"><code><div>_gammaGrayReform(img, <span class="hljs-number">2</span>, <span class="hljs-number">1</span>);  
+</div></code></pre>
+<p><img src="./source/23.png" alt="avatar"></p>
+<ol start="4">
+<li><strong>背景以及两侧扣图</strong><br>
+背景以及两侧噪音很多，不如直接把他们给剔除，毕竟数据集车道线主要是前方中间区域
+<strong>代码中我基本上用at方法访问像素，后来知道了指针方法更加快</strong>，不过at比较符合数组访问形式（懒得改.....)</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-keyword">int</span> h = img.rows;                     <span class="hljs-comment">//背景处理，减少噪音与运算量</span>
+	<span class="hljs-keyword">int</span> w = img.cols;
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; h * <span class="hljs-number">2</span> / <span class="hljs-number">5</span>; i++) {
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; w; j++) {
+			img.at&lt;uchar&gt;(i, j) = <span class="hljs-number">0</span>;  
+		}
+	}
+</div></code></pre>
+<p>注意两侧处理要在拉普拉斯锐化之后，否则拉普拉斯会把两条直线看作边缘了</p>
+<pre class="hljs"><code><div>img = _lpFilter(img, <span class="hljs-number">1</span>);              <span class="hljs-comment">//拉普拉斯锐化</span>
+img = _myFilter(img, ker);            <span class="hljs-comment">//检测y方向边缘</span>
+
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; h; i++) {         <span class="hljs-comment">//两侧处理，减少噪音与运算量</span>
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = <span class="hljs-number">0</span>; j &lt; w; j++) {
+			<span class="hljs-keyword">if</span> ((<span class="hljs-keyword">double</span>)i &lt;= <span class="hljs-number">-0.8</span> * j + (<span class="hljs-keyword">double</span>)<span class="hljs-number">600</span> || (<span class="hljs-keyword">double</span>)i &lt;= <span class="hljs-number">0.8</span> * j - (<span class="hljs-keyword">double</span>)<span class="hljs-number">440</span>) {
+				img.at&lt;uchar&gt;(i, j) = <span class="hljs-number">0</span>;
+			}
+		}
+	}
+</div></code></pre>
+<ol start="5">
+<li><strong>拉普拉斯锐化</strong>本质是为了提取边缘，经过实践发现scharr算子增加了很多不必要的细节，Robert算子和sobel算子也实现效果均不如拉普拉斯，<br>
+candy算法一个是效果比较慢，另一个是延迟阈值化的两端参数不能很好的普适（有些图合适，另一些不一定合适）。</li>
+</ol>
+<pre class="hljs"><code><div>_lpFilter(img, <span class="hljs-number">1</span>);<span class="hljs-comment">//1是选择核的参数，感兴趣可以阅读代码</span>
+</div></code></pre>
+<p>为了感受边缘提取的效果特地去除了背景扣图这一部分
+<img src="./source/24.png" alt="avatar"></p>
+<ol start="6">
+<li><strong>检测y方向边缘</strong>。考虑到车道线基本分布在y方向，偏差不会太大。自定义了一个检测y方向的算子</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-keyword">const</span> <span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">double</span>&gt;&gt; ker = {		<span class="hljs-comment">//用于检测y方向边缘的算子</span>
+	{<span class="hljs-number">-1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>},
+	{<span class="hljs-number">-2</span>,<span class="hljs-number">0</span>,<span class="hljs-number">2</span>},
+	{<span class="hljs-number">-1</span>,<span class="hljs-number">0</span>,<span class="hljs-number">1</span>}
+};
+ _myFilter(img, ker); 
+</div></code></pre>
+<p>为了感受边缘提取的效果特地去除了背景扣图这一部分
+<img src="./source/25.png" alt="avatar"></p>
+<ol start="7">
+<li><strong>阈值分割</strong> 一来为了减少运算量，二来也是减少了不必要的干扰</li>
+</ol>
+<pre class="hljs"><code><div> _thredShold(img, <span class="hljs-number">120</span>);  
+</div></code></pre>
+<p><img src="./source/26.png" alt="avatar"></p>
+<ol start="8">
+<li><strong>霍夫检测</strong>。可以说是本算法的灵魂了，发现（发明？）这种方法的简直是天才，抗干扰性非常非常强大！</li>
+</ol>
+<pre class="hljs"><code><div>_houghDetectline(img);
+</div></code></pre>
+<p>其他实现就不贴代码了，这个霍夫变换实现代码值得贴出来。（这是我的粗糙版本，opencv自带的算法肯定处理得好很多很多）<br>
+可以大大优化在于： vote可以用unordered_map实现，它的增删查改操作都是O（1），但是需要自定义哈希函数等等额外操作。</p>
+<pre class="hljs"><code><div>cv::Mat _houghDetectline(<span class="hljs-keyword">const</span> cv::Mat&amp; src) {
+
+	Mat img = src.clone();
+
+	<span class="hljs-keyword">extern</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> PI;
+	<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> h = img.rows;
+	<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> w = img.cols;
+	<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> n = h * w + <span class="hljs-number">1000</span>;
+
+	<span class="hljs-built_in">map</span>&lt;<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">int</span>&gt;, <span class="hljs-keyword">int</span>&gt; vote;    <span class="hljs-comment">//统计票数 vector0-r , vector1-theta</span>
+	
+	<span class="hljs-keyword">int</span> <span class="hljs-built_in">max</span> = <span class="hljs-number">0</span>;
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> y = <span class="hljs-number">0</span>; y &lt; h; y++) {     <span class="hljs-comment">//霍夫空间计算票数</span>
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> x = <span class="hljs-number">0</span>; x &lt; w; x++) {
+			<span class="hljs-keyword">if</span> (img.at&lt;uchar&gt;(y, x) &lt;= <span class="hljs-number">20</span>) { <span class="hljs-comment">//减少计算量</span>
+				<span class="hljs-keyword">continue</span>;
+			}
+			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> theta = <span class="hljs-number">20</span>; theta &lt;= <span class="hljs-number">180</span>; theta++) {
+				<span class="hljs-keyword">if</span> (<span class="hljs-built_in">abs</span>(theta - <span class="hljs-number">90</span>) &lt;= <span class="hljs-number">10</span> ) {   <span class="hljs-comment">//一般车道线都是前方，而不是垂直与前方</span>
+					<span class="hljs-keyword">continue</span>;
+				}
+				<span class="hljs-keyword">int</span> r = x * <span class="hljs-built_in">cos</span>(theta * PI / <span class="hljs-number">180</span>) + y * <span class="hljs-built_in">sin</span>(theta * PI / <span class="hljs-number">180</span>);
+				vote[{r,theta}] ++;
+				
+				<span class="hljs-keyword">if</span> (<span class="hljs-built_in">max</span> &lt;= vote[{r, theta}]) {
+					<span class="hljs-built_in">max</span> = vote[{r, theta}];
+					<span class="hljs-comment">//cout&lt;&lt;"vote = "&lt;&lt; max &lt;&lt; " r = " &lt;&lt; r &lt;&lt; " theta = " &lt;&lt; theta &lt;&lt; endl;</span>
+				}
+			}
+		}
+	}
+
+	<span class="hljs-function"><span class="hljs-built_in">vector</span>&lt;<span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">bool</span>&gt;&gt; <span class="hljs-title">mask</span><span class="hljs-params">(h, <span class="hljs-built_in">vector</span>&lt;<span class="hljs-keyword">bool</span>&gt;(w))</span></span>;
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> y = <span class="hljs-number">0</span>; y &lt; h; y++) {
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> x = <span class="hljs-number">0</span>; x &lt; w; x++) {
+			mask[y][x] = <span class="hljs-number">0</span>;
+		}
+	}
+
+	<span class="hljs-keyword">int</span> <span class="hljs-built_in">line</span> = <span class="hljs-number">2</span>; <span class="hljs-comment">//两条车道线</span>
+	<span class="hljs-keyword">while</span> (<span class="hljs-built_in">line</span>--) {
+
+		<span class="hljs-keyword">auto</span> it = max_element(vote.<span class="hljs-built_in">begin</span>(), vote.<span class="hljs-built_in">end</span>(), cmp_value);
+		<span class="hljs-keyword">int</span> r = it-&gt;first[<span class="hljs-number">0</span>]; <span class="hljs-comment">//cout &lt;&lt; r &lt;&lt; "  ";</span>
+		<span class="hljs-keyword">int</span> theta = it-&gt;first[<span class="hljs-number">1</span>]; <span class="hljs-comment">//cout &lt;&lt; theta &lt;&lt; endl;</span>
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> y = <span class="hljs-number">0</span>; y &lt; h; y++) {
+			<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> x = <span class="hljs-number">0</span>; x &lt; w; x++) {
+				<span class="hljs-keyword">int</span> tar = x * <span class="hljs-built_in">cos</span>(theta * PI / <span class="hljs-number">180</span>) + y * <span class="hljs-built_in">sin</span>(theta * PI / <span class="hljs-number">180</span>);
+				<span class="hljs-keyword">if</span> (tar == r) {
+					mask[y][x] = <span class="hljs-number">1</span>;
+				}
+			}
+		}
+
+		<span class="hljs-keyword">int</span> limit = <span class="hljs-number">500</span>;
+		<span class="hljs-keyword">while</span> (limit-- &amp;&amp; !vote.empty()) {  <span class="hljs-comment">//直线聚类</span>
+
+			<span class="hljs-keyword">auto</span> p = max_element(vote.<span class="hljs-built_in">begin</span>(), vote.<span class="hljs-built_in">end</span>(), cmp_value);
+			<span class="hljs-keyword">int</span> pr = p-&gt;first[<span class="hljs-number">0</span>];
+			<span class="hljs-keyword">int</span> pth = p-&gt;first[<span class="hljs-number">1</span>];
+			<span class="hljs-keyword">if</span> (<span class="hljs-built_in">abs</span>(r - pr) &lt;= <span class="hljs-number">60</span> || <span class="hljs-built_in">abs</span>(theta - pth)&lt;=<span class="hljs-number">5</span>) {
+				vote[{ pr,pth }] = <span class="hljs-number">0</span>;
+			}
+			<span class="hljs-keyword">else</span> {
+				<span class="hljs-keyword">break</span>;
+			}
+		}
+	}
+	<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> y = <span class="hljs-number">0</span>; y &lt; h; y++) {
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> x = <span class="hljs-number">0</span>; x &lt; w; x++) {
+			<span class="hljs-keyword">if</span> (mask[y][x]) {
+				img.at&lt;uchar&gt;(y, x) = <span class="hljs-number">255</span>;
+			}
+			<span class="hljs-keyword">else</span> {
+				img.at&lt;uchar&gt;(y, x) = <span class="hljs-number">0</span>;
+			}
+		}
+	}
+	
+
+	<span class="hljs-comment">//cv::imshow("hough", img);</span>
+	<span class="hljs-comment">//cv::waitKey(0);</span>
+	<span class="hljs-keyword">return</span> img;
+}
+</div></code></pre>
+<p><img src="./source/27.png" alt="avatar"></p>
+<ol start="9">
+<li><strong>效果</strong>
+<img src="./source/28.png" alt="avatar"></li>
+</ol>
+<h2 id="3-%E7%BB%93%E6%9E%9C%E5%88%86%E6%9E%90"><strong>3. 结果分析</strong></h2>
+<ol>
+<li>
+<p>基本上表现不错，部分结果如下
+<img src="./source/1.jpg" alt="avatar">
+<img src="./source/2.jpg" alt="avatar">
+<img src="./source/3.jpg" alt="avatar">
+<img src="./source/10.jpg" alt="avatar">
+<img src="./source/6.jpg" alt="avatar">
+<img src="./source/11.jpg" alt="avatar"></p>
+</li>
+<li>
+<p>但是也有部分将道路边缘识别成车道线，这种事情发生的概率我看了一下大概每17张图片就出现2张。也展示一下.<br>
+出现的原因有1）出现大型车辆，使车道线不明显于道路两侧 ； 2）部分路段道路施工，扩宽的区域颜色对比强烈
+<img src="./source/13.jpg" alt="avatar">
+<img src="./source/9.jpg" alt="avatar"></p>
+</li>
+<li>
+<p>由（2）准确率可以近似认为15/17 = 88.24%</p>
+</li>
+</ol>
+<h2 id="4-%E5%90%8E%E7%BB%AD"><strong>4. 后续</strong></h2>
+<ol>
+<li>可能会加入多线程处理数据</li>
+<li>可能想自己实现一下用神经网络处理的效果</li>
+</ol>
+
+</body>
+</html>
