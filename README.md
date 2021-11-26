@@ -54,14 +54,14 @@
 
 ### **2.2 实现过程**
 0. **以此图片为实例**  
-![avatar](./source/20.jpg)
+![avatar](./车道线检测/source/20.jpg)
 
 1. **转灰度图**，公式是GRAY = B * 0.114 + G * 0.587 + R * 0.299。目的是为了减少运算量，简化操作。
 ```c++
  _getGray(img) //有些函数会与opencv重名，所以我自实现的都带下划线。其实也可以自定义namespace
 ```
 效果：
-![avatar](./source/21.png)   
+![avatar](./车道线检测/source/21.png)   
    
 
 
@@ -73,7 +73,7 @@
 ```c++
 _blur(img, 3, 3); //大小是 3*3
 ```
-![avatar](./source/22.png)  
+![avatar](./车道线检测/source/22.png)  
    
       
 
@@ -84,7 +84,7 @@ _blur(img, 3, 3); //大小是 3*3
 ```c++
 _gammaGrayReform(img, 2, 1);  
 ```
-![avatar](./source/23.png)
+![avatar](./车道线检测/source/23.png)
    
       
          
@@ -124,7 +124,7 @@ img = _myFilter(img, ker);            //检测y方向边缘
 _lpFilter(img, 1);//1是选择核的参数，感兴趣可以阅读代码
 ```
 为了感受边缘提取的效果特地去除了背景扣图这一部分
-![avatar](./source/24.png)  
+![avatar](./车道线检测/source/24.png)  
    
       
 
@@ -139,13 +139,13 @@ const vector<vector<double>> ker = {		//用于检测y方向边缘的算子
  _myFilter(img, ker); 
 ```
 为了感受边缘提取的效果特地去除了背景扣图这一部分
-![avatar](./source/25.png)
+![avatar](./车道线检测/source/25.png)
 
 7. **阈值分割** 一来为了减少运算量，二来也是减少了不必要的干扰
 ```c++
  _thredShold(img, 120);  
 ```
-![avatar](./source/26.png)
+![avatar](./车道线检测/source/26.png)
 
 8. **霍夫检测**。可以说是本算法的灵魂了，发现（发明？）这种方法的简直是天才，抗干扰性非常非常强大！
 ```c++
@@ -239,24 +239,24 @@ cv::Mat _houghDetectline(const cv::Mat& src) {
 	return img;
 }
 ```
-![avatar](./source/27.png)
+![avatar](./车道线检测/source/27.png)
 
 9. **效果**
-![avatar](./source/28.png)
+![avatar](./车道线检测/source/28.png)
 
 
 ## **3. 结果分析**
 1. 基本上表现不错，部分结果如下
-![avatar](./source/1.jpg)
-![avatar](./source/2.jpg)
-![avatar](./source/3.jpg)
-![avatar](./source/10.jpg)
-![avatar](./source/6.jpg)
-![avatar](./source/11.jpg)
+![avatar](./车道线检测/source/1.jpg)
+![avatar](./车道线检测/source/2.jpg)
+![avatar](./车道线检测/source/3.jpg)
+![avatar](./车道线检测/source/10.jpg)
+![avatar](./车道线检测/source/6.jpg)
+![avatar](./车道线检测/source/11.jpg)
 2. 但是也有部分将道路边缘识别成车道线，这种事情发生的概率我看了一下大概每17张图片就出现2张。也展示一下.   
    出现的原因有1）出现大型车辆，使车道线不明显于道路两侧 ； 2）部分路段道路施工，扩宽的区域颜色对比强烈
-![avatar](./source/13.jpg)
-![avatar](./source/9.jpg)
+![avatar](./车道线检测/source/13.jpg)
+![avatar](./车道线检测/source/9.jpg)
 
 3.  由（2）准确率可以近似认为15/17 = 88.24%
    
